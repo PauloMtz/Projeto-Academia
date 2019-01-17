@@ -1,9 +1,21 @@
 package br.com.academia.domain.aluno;
 
-public class Estado {
+import java.io.Serializable;
 
-	// atributos
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "estados")
+public class Estado implements Serializable {
+
+	@Id
+	@Column(name = "sigla", nullable = false, length = 2)
 	private String sigla;
+	
+	@Column(name = "nome", nullable = false, length = 64)
 	private String nome;
 	
 	// getters e setters
