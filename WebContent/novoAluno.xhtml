@@ -1,14 +1,20 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html>
-<html lang="pt-br">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	lang="pt-br">
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="ISO-8859-1"/>
 <title>Academia</title>
-<link rel="stylesheet" type="text/css" href="css/estilo.css">
+<link rel="stylesheet" type="text/css" href="css/estilo.css"/>
 </head>
 <body>
 <header>
 <div class="logo">
-	<img src="img/logo.png">
+	<img src="img/logo.png"/>
 </div>
 <nav>
 	<div class="menu">
@@ -37,7 +43,7 @@
 			<legend>Dados pessoais</legend>
 			<div class="linha">
 				<label for="nome">Nome:</label>
-				<p><input type="text" name="nome" id="nome"></p>
+				<p><input type="text" name="nome" id="nome"/></p>
 			</div>
 			<div class="linha">
 				<label for="sexo">Sexo:</label>
@@ -51,38 +57,38 @@
 			</div>
 			<div class="linha">
 				<label for="rg">RG:</label>
-				<p><input type="text" name="rg" id="rg"></p>
+				<p><input type="text" name="rg" id="rg"/></p>
 			</div>
 			<div class="linha">
 				<label for="data_nasc">Data de nascimento:</label>
-				<p><input type="date" name="data_nasc" id="data_nasc"></p>
+				<p><input type="date" name="data_nasc" id="data_nasc"/></p>
 			</div>
 		</fieldset>
 		<fieldset>
 			<legend>Situação</legend>
 			<div class="radio">
-				<span class="rd_input"><input type="radio" name="situacao" checked="checked">Ativo</span>
-				<span class="rd_input"><input type="radio" name="situacao">Inativo</span>
-				<span class="rd_input"><input type="radio" name="situacao">Com pendência</span>
+				<span class="rd_input"><input type="radio" name="situacao" checked="checked"/>Ativo</span>
+				<span class="rd_input"><input type="radio" name="situacao"/>Inativo</span>
+				<span class="rd_input"><input type="radio" name="situacao"/>Com pendência</span>
 			</div>
 		</fieldset>
 		<fieldset>
 			<legend>Endereço</legend>
 			<div class="linha">
 				<label for="rua">Rua:</label>
-				<p><input type="text" name="rua" id="rua"></p>
+				<p><input type="text" name="rua" id="rua"/></p>
 			</div>
 			<div class="linha">
 				<label for="num">Número:</label>
-				<p><input type="text" name="num" id="num"></p>
+				<p><input type="text" name="num" id="num"/></p>
 			</div>
 			<div class="linha">
 				<label for="compl">Complemento:</label>
-				<p><input type="text" name="compl" id="compl"></p>
+				<p><input type="text" name="compl" id="compl"/></p>
 			</div>
 			<div class="linha">
 				<label for="cidade">Cidade:</label>
-				<p><input type="text" name="cidade" id="cidade"></p>
+				<p><input type="text" name="cidade" id="cidade"/></p>
 			</div>
 			<div class="linha">
 				<label for="estado">Estado:</label>
@@ -98,26 +104,26 @@
 			</div>
 			<div class="linha">
 				<label for="cep">CEP:</label>
-				<p><input type="text" name="cep" id="cep"></p>
+				<p><input type="text" name="cep" id="cep"/></p>
 			</div>
 		</fieldset>
 		<fieldset>
 			<legend>Contato</legend>
 			<div class="linha">
 				<label for="email">E-mail:</label>
-				<p><input type="email" name="email" id="email"></p>
+				<p><input type="email" name="email" id="email"/></p>
 			</div>
 			<div class="linha">
 				<label for="ddd">Telefone:</label>
-				<p><input type="tel" name="ddd" id="ddd" id="ddd"><input type="tel" name="telefone" id="telefone"></p>
+				<p><input type="tel" name="ddd" id="ddd"/><input type="tel" name="telefone" id="telefone"/></p>
 			</div>
 		</fieldset>
-		<input class="btn" type="submit" value="Cadastrar">
-		<input class="btn" type="button" value="Relatório de acessos">
+		<input class="btn" type="submit" value="Cadastrar"/>
+		<input class="btn" type="button" value="Relatório de acessos"/>
 	</form>
 </div>
 <div class="rodape">
-	<p>&copy; Todos os direitos reservados.</p>
+	<p>Todos os direitos reservados | 2019</p>
 </div>
 </body>
 </html>
