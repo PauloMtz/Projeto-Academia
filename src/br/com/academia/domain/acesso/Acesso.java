@@ -1,15 +1,36 @@
 package br.com.academia.domain.acesso;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import br.com.academia.domain.aluno.Aluno;
 
-public class Acesso {
+@Entity
+@Table(name = "acessos")
+public class Acesso implements Serializable {
 
-	// atributos
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", nullable = false)
 	private Integer id;
+	
+	@ManyToOne
+	@JoinColumn(name = "aluno_id", nullable = false)
 	private Aluno aluno;
+	
+	@Column(name = "entrada", nullable = false)
 	private LocalDateTime entrada;
+	
+	@Column(name = "saida", nullable = true)
 	private LocalDateTime saida;
 	
 	// getters e setters

@@ -1,9 +1,20 @@
 package br.com.academia.domain.aluno;
 
-public class Telefone {
+import java.io.Serializable;
 
-	// atributos
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+
+/*
+ * Ver explicação para class embeddable em endereço
+ */
+@Embeddable
+public class Telefone implements Serializable {
+
+	@Column(name = "ddd", nullable = true, length = 2)
 	private Integer ddd;
+	
+	@Column(name = "telefone", nullable = true, length = 9)
 	private Integer numero;
 	
 	// getters e setters

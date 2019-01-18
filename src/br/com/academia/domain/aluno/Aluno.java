@@ -1,8 +1,18 @@
 package br.com.academia.domain.aluno;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Aluno {
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.Enumerated;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "alunos")
+public class Aluno implements Serializable {
 
 	// enums
 	public enum Sexo {
@@ -13,14 +23,39 @@ public class Aluno {
 		Ativo, Inativo, Pendente;
 	}
 	
-	// atributos
+	@Id
+	@Column(name = "matricula", nullable = false, length = 8)
 	private String matricula;
+	
+	@Column(name = "nome", nullable = false, length = 64)
 	private String nome;
+	
+	@Enumerated
+	@Column(name = "sexo", nullable = false, length = 1)
 	private Sexo sexo;
+	
+	@Column(name = "rg", nullable = false, length = 10)
 	private Integer rg;
+	
+	@Column(name = "nascimento", nullable = false)
 	private LocalDate nascimento;
+	
+	@Enumerated
+	@Column(name = "situacao", nullable = false, length = 1)
 	private Situacao situacao;
+	
+	@Column(name = "email", nullable = true, length = 64)
+	private String email;
+	
+	/*
+	 * Endereço e telefone não vão ter tabelas no banco de dados.
+	 * No entanto, elas terão classes separadas, que serão atreladas à classe Aluno.
+	 * Para isso, usa-se Embedded para dizer para a JPA que elas compartilharão o ID do aluno.
+	 */
+	@Embedded
 	private Endereco endereco = new Endereco();
+	
+	@Embedded
 	private Telefone telefone = new Telefone();
 	
 	// getters e setters
@@ -59,6 +94,12 @@ public class Aluno {
 	}
 	public void setSituacao(Situacao situacao) {
 		this.situacao = situacao;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	public Endereco getEndereco() {
 		return endereco;

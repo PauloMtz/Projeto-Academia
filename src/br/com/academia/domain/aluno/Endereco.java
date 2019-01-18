@@ -1,13 +1,36 @@
 package br.com.academia.domain.aluno;
 
-public class Endereco {
+import java.io.Serializable;
 
-	// atributos
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+/*
+ * Essa classe irá compartilhar o ID do aluno.
+ * Por isseo, ela será embeddable
+ */
+@Embeddable
+public class Endereco implements Serializable {
+
+	@Column(name = "rua", nullable = false, length = 128)
 	private String rua;
+	
+	@Column(name = "numero", nullable = true, length = 6)
 	private String numero;
+	
+	@Column(name = "complemento", nullable = true, length = 32)
 	private String complemento;
+	
+	@Column(name = "cidade", nullable = false, length = 64)
 	private String cidade;
+	
+	@ManyToOne
+	@JoinColumn(name = "estado_id", nullable = false)
 	private Estado estado = new Estado();
+	
+	@Column(name = "cep", nullable = false, length = 8)
 	private Integer cep;
 	
 	// getters e setters
