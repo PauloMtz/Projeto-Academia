@@ -6,124 +6,103 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:jsf="http://xmlns.jcp.org/jsf"
 	lang="pt-br">
-<head>
-<meta charset="ISO-8859-1"/>
-<title>Academia</title>
-<link rel="stylesheet" type="text/css" href="css/estilo.css"/>
-</head>
-<body>
-<header>
-<div class="logo">
-	<img src="img/logo.png"/>
-</div>
-<nav>
-	<div class="menu">
-		<ul>
-			<li><a href="novoAluno.html">Novo Aluno</a></li>
-			<li><a href="consultarAluno.html">Consultar Aluno</a></li>
-			<li><a href="controleAcessos.html">Controle de Acessos</a></li>
-			<li><a href="relatorioEntradaSaida.html">Relatórios de Entradas e Saídas</a></li>
-			<li><a href="relatorioSituacoes.html">Relatórios de Situações</a></li>
-		</ul>
-	</div>
-</nav>
-</header><!-- Fim do cabeçaho -->
 
-<div class="titulo">
-	<h1>Novo aluno</h1>
-</div>
-
-<div id="infoMessage" class="infoMessage">
-	<p>Mensagem de erro ou sucesso.</p>
-</div>
-
-<div class="formulario">
-	<form action="" method="post">
-		<fieldset>
-			<legend>Dados pessoais</legend>
-			<div class="linha">
-				<label for="nome">Nome:</label>
-				<p><input type="text" name="nome" id="nome"/></p>
+	<ui:composition template="layout.xhtml">
+		<ui:define name="conteudo">
+		
+			<div class="titulo">
+				<h1>Novo aluno</h1>
 			</div>
-			<div class="linha">
-				<label for="sexo">Sexo:</label>
-				<p>
-				<select name="sexo" id="sexo">
-					<option> Selecione </option>
-					<option> Masculino </option>
-					<option> Feminino </option>
-				</select>
-				</p>
+			
+			<div id="infoMessage" class="infoMessage">
+				<p>Mensagem de erro ou sucesso.</p>
 			</div>
-			<div class="linha">
-				<label for="rg">RG:</label>
-				<p><input type="text" name="rg" id="rg"/></p>
+			
+			<div class="formulario">
+				<form action="" method="post">
+					<fieldset>
+						<legend>Dados pessoais</legend>
+						<div class="linha">
+							<label for="nome">Nome:</label>
+							<p><input type="text" name="nome" id="nome"/></p>
+						</div>
+						<div class="linha">
+							<label for="sexo">Sexo:</label>
+							<p>
+							<select name="sexo" id="sexo">
+								<option> Selecione </option>
+								<option> Masculino </option>
+								<option> Feminino </option>
+							</select>
+							</p>
+						</div>
+						<div class="linha">
+							<label for="rg">RG:</label>
+							<p><input type="text" name="rg" id="rg"/></p>
+						</div>
+						<div class="linha">
+							<label for="data_nasc">Data de nascimento:</label>
+							<p><input type="date" name="data_nasc" id="data_nasc"/></p>
+						</div>
+					</fieldset>
+					<fieldset>
+						<legend>Situação</legend>
+						<div class="radio">
+							<span class="rd_input"><input type="radio" name="situacao" checked="checked"/>Ativo</span>
+							<span class="rd_input"><input type="radio" name="situacao"/>Inativo</span>
+							<span class="rd_input"><input type="radio" name="situacao"/>Com pendência</span>
+						</div>
+					</fieldset>
+					<fieldset>
+						<legend>Endereço</legend>
+						<div class="linha">
+							<label for="rua">Rua:</label>
+							<p><input type="text" name="rua" id="rua"/></p>
+						</div>
+						<div class="linha">
+							<label for="num">Número:</label>
+							<p><input type="text" name="num" id="num"/></p>
+						</div>
+						<div class="linha">
+							<label for="compl">Complemento:</label>
+							<p><input type="text" name="compl" id="compl"/></p>
+						</div>
+						<div class="linha">
+							<label for="cidade">Cidade:</label>
+							<p><input type="text" name="cidade" id="cidade"/></p>
+						</div>
+						<div class="linha">
+							<label for="estado">Estado:</label>
+							<p>
+							<select name="estado" id="estado">
+								<option> Selecione </option>
+								<option> Minas Gerais </option>
+								<option> São Paulo </option>
+								<option> Rio de Janeiro </option>
+								<option> Santa Catarina </option>
+							</select>
+							</p>
+						</div>
+						<div class="linha">
+							<label for="cep">CEP:</label>
+							<p><input type="text" name="cep" id="cep"/></p>
+						</div>
+					</fieldset>
+					<fieldset>
+						<legend>Contato</legend>
+						<div class="linha">
+							<label for="email">E-mail:</label>
+							<p><input type="email" name="email" id="email"/></p>
+						</div>
+						<div class="linha">
+							<label for="ddd">Telefone:</label>
+							<p><input type="tel" name="ddd" id="ddd"/><input type="tel" name="telefone" id="telefone"/></p>
+						</div>
+					</fieldset>
+					<input class="btn" type="submit" value="Cadastrar"/>
+					<input class="btn" type="button" value="Relatório de acessos"/>
+				</form>
 			</div>
-			<div class="linha">
-				<label for="data_nasc">Data de nascimento:</label>
-				<p><input type="date" name="data_nasc" id="data_nasc"/></p>
-			</div>
-		</fieldset>
-		<fieldset>
-			<legend>Situação</legend>
-			<div class="radio">
-				<span class="rd_input"><input type="radio" name="situacao" checked="checked"/>Ativo</span>
-				<span class="rd_input"><input type="radio" name="situacao"/>Inativo</span>
-				<span class="rd_input"><input type="radio" name="situacao"/>Com pendência</span>
-			</div>
-		</fieldset>
-		<fieldset>
-			<legend>Endereço</legend>
-			<div class="linha">
-				<label for="rua">Rua:</label>
-				<p><input type="text" name="rua" id="rua"/></p>
-			</div>
-			<div class="linha">
-				<label for="num">Número:</label>
-				<p><input type="text" name="num" id="num"/></p>
-			</div>
-			<div class="linha">
-				<label for="compl">Complemento:</label>
-				<p><input type="text" name="compl" id="compl"/></p>
-			</div>
-			<div class="linha">
-				<label for="cidade">Cidade:</label>
-				<p><input type="text" name="cidade" id="cidade"/></p>
-			</div>
-			<div class="linha">
-				<label for="estado">Estado:</label>
-				<p>
-				<select name="estado" id="estado">
-					<option> Selecione </option>
-					<option> Minas Gerais </option>
-					<option> São Paulo </option>
-					<option> Rio de Janeiro </option>
-					<option> Santa Catarina </option>
-				</select>
-				</p>
-			</div>
-			<div class="linha">
-				<label for="cep">CEP:</label>
-				<p><input type="text" name="cep" id="cep"/></p>
-			</div>
-		</fieldset>
-		<fieldset>
-			<legend>Contato</legend>
-			<div class="linha">
-				<label for="email">E-mail:</label>
-				<p><input type="email" name="email" id="email"/></p>
-			</div>
-			<div class="linha">
-				<label for="ddd">Telefone:</label>
-				<p><input type="tel" name="ddd" id="ddd"/><input type="tel" name="telefone" id="telefone"/></p>
-			</div>
-		</fieldset>
-		<input class="btn" type="submit" value="Cadastrar"/>
-		<input class="btn" type="button" value="Relatório de acessos"/>
-	</form>
-</div>
-<div class="rodape">
-	<p>Todos os direitos reservados | 2019</p>
-</div>
-</body>
+		</ui:define>
+	</ui:composition>
 </html>
