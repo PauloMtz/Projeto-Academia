@@ -59,6 +59,10 @@ public class Aluno implements Serializable {
 	@Embedded
 	private Telefone telefone = new Telefone();
 	
+	public void gerarMatricula() {
+		//TODO: implementar lógica
+		this.matricula = "1";
+	}
 	// getters e setters
 	public String getMatricula() {
 		return matricula;
