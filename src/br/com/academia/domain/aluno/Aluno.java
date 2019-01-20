@@ -2,6 +2,7 @@ package br.com.academia.domain.aluno;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -37,8 +38,8 @@ public class Aluno implements Serializable {
 	@Column(name = "rg", nullable = false, length = 10)
 	private Integer rg;
 	
-	@Column(name = "nascimento", nullable = false)
-	private LocalDate nascimento;
+	@Column(name = "nascimento", nullable = true)
+	private Date nascimento;
 	
 	@Enumerated
 	@Column(name = "situacao", nullable = false, length = 1)
@@ -83,10 +84,10 @@ public class Aluno implements Serializable {
 	public void setRg(Integer rg) {
 		this.rg = rg;
 	}
-	public LocalDate getNascimento() {
+	public Date getNascimento() {
 		return nascimento;
 	}
-	public void setNascimento(LocalDate nascimento) {
+	public void setNascimento(Date nascimento) {
 		this.nascimento = nascimento;
 	}
 	public Situacao getSituacao() {

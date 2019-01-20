@@ -19,87 +19,87 @@
 			</div>
 			
 			<div class="formulario">
-				<form action="" method="post">
+				<form jsf:id="form">
 					<fieldset>
 						<legend>Dados pessoais</legend>
 						<div class="linha">
 							<label for="nome">Nome:</label>
-							<p><input type="text" name="nome" id="nome"/></p>
+							<p><input type="text" jsf:value="#{alunoBean.aluno.nome}" name="nome" id="nome"/></p>
+							<!-- nesse jsf:value, o jsf chama o bean alunoBean, o método getAluno, buscando o nome lá da classe Aluno (getNome) -->
 						</div>
 						<div class="linha">
 							<label for="sexo">Sexo:</label>
 							<p>
-							<select name="sexo" id="sexo">
-								<option> Selecione </option>
-								<option> Masculino </option>
-								<option> Feminino </option>
+							<select jsf:value="#{alunoBean.aluno.sexo}" name="sexo" id="sexo" size="0">
+								<f:selectItems value="#{dataBean.sexos}" />
 							</select>
 							</p>
 						</div>
 						<div class="linha">
 							<label for="rg">RG:</label>
-							<p><input type="text" name="rg" id="rg"/></p>
+							<p><input type="text" jsf:value="#{alunoBean.aluno.rg}" name="rg" id="rg"/></p>
 						</div>
 						<div class="linha">
 							<label for="data_nasc">Data de nascimento:</label>
-							<p><input type="date" name="data_nasc" id="data_nasc"/></p>
+							<p><input type="date" jsf:value="#{alunoBean.aluno.nascimento}" name="data_nasc" id="data_nasc">
+								<f:convertDateTime type="Date" pattern="yyyy-MM-dd"/>
+							</input></p>
 						</div>
 					</fieldset>
 					<fieldset>
 						<legend>Situação</legend>
-						<div class="radio">
-							<span class="rd_input"><input type="radio" name="situacao" checked="checked"/>Ativo</span>
-							<span class="rd_input"><input type="radio" name="situacao"/>Inativo</span>
-							<span class="rd_input"><input type="radio" name="situacao"/>Com pendência</span>
+						<div class="linha">
+							<label for="situacao">Situação:</label>
+							<p>
+							<select jsf:value="#{alunoBean.aluno.situacao}" name="situacao" id="situacao" size="0">
+								<f:selectItems value="#{dataBean.situacoes}" />
+							</select>
+							</p>
 						</div>
 					</fieldset>
 					<fieldset>
 						<legend>Endereço</legend>
 						<div class="linha">
 							<label for="rua">Rua:</label>
-							<p><input type="text" name="rua" id="rua"/></p>
+							<p><input type="text" jsf:value="#{alunoBean.aluno.endereco.rua}" name="rua" id="rua"/></p>
 						</div>
 						<div class="linha">
 							<label for="num">Número:</label>
-							<p><input type="text" name="num" id="num"/></p>
+							<p><input type="text" jsf:value="#{alunoBean.aluno.endereco.numero}" name="num" id="num"/></p>
 						</div>
 						<div class="linha">
 							<label for="compl">Complemento:</label>
-							<p><input type="text" name="compl" id="compl"/></p>
+							<p><input type="text" jsf:value="#{alunoBean.aluno.endereco.complemento}" name="compl" id="compl"/></p>
 						</div>
 						<div class="linha">
 							<label for="cidade">Cidade:</label>
-							<p><input type="text" name="cidade" id="cidade"/></p>
+							<p><input type="text" jsf:value="#{alunoBean.aluno.endereco.cidade}" name="cidade" id="cidade"/></p>
 						</div>
 						<div class="linha">
 							<label for="estado">Estado:</label>
 							<p>
-							<select name="estado" id="estado">
-								<option> Selecione </option>
-								<option> Minas Gerais </option>
-								<option> São Paulo </option>
-								<option> Rio de Janeiro </option>
-								<option> Santa Catarina </option>
+							<select jsf:value="#{alunoBean.aluno.endereco.estado.sigla}" name="estado" id="estado" size="0">
+								<f:selectItems value="#{dataBean.estados}" var="e" itemLabel="#{e.nome}" itemValue="#{e.sigla}"/>
 							</select>
 							</p>
 						</div>
 						<div class="linha">
 							<label for="cep">CEP:</label>
-							<p><input type="text" name="cep" id="cep"/></p>
+							<p><input type="text" jsf:value="#{alunoBean.aluno.endereco.cep}" name="cep" id="cep"/></p>
 						</div>
 					</fieldset>
 					<fieldset>
 						<legend>Contato</legend>
 						<div class="linha">
 							<label for="email">E-mail:</label>
-							<p><input type="email" name="email" id="email"/></p>
+							<p><input type="email" jsf:value="#{alunoBean.aluno.email}" name="email" id="email"/></p>
 						</div>
 						<div class="linha">
 							<label for="ddd">Telefone:</label>
-							<p><input type="tel" name="ddd" id="ddd"/><input type="tel" name="telefone" id="telefone"/></p>
+							<p><input type="tel" jsf:value="#{alunoBean.aluno.telefone.ddd}" name="ddd" id="ddd"/><input type="tel" jsf:value="#{alunoBean.aluno.telefone.numero}" name="telefone" id="telefone"/></p>
 						</div>
 					</fieldset>
-					<input class="btn" type="submit" value="Cadastrar"/>
+					<input class="btn" type="submit" value="Cadastrar" jsf:action="#{alunoBean.gravar}"/>
 					<input class="btn" type="button" value="Relatório de acessos"/>
 				</form>
 			</div>

@@ -141,13 +141,7 @@ label {
 .radio {
 	font-size: 14px;
 	color: #4C0B5F;
-	margin-left: 40px;
-}
-.radio input {
-	margin-right: 5px;
-}
-.rd_input {
-	margin-right: 40px;
+	padding-left: 40px;
 }
 #ddd {
 	width: 30px;
