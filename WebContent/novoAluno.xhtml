@@ -8,18 +8,26 @@
 	lang="pt-br">
 
 	<ui:composition template="layout.xhtml">
+		<f:metadata>
+			<f:viewParam name="matricula" value="#{alunoBean.matricula}" />
+			<f:viewAction action="#{alunoBean.carregar}" />
+		</f:metadata>
 		<ui:define name="conteudo">
 		
 			<div class="titulo">
-				<h1>Novo aluno</h1>
+				<h1>#{alunoBean.titulo}</h1>
 			</div>
 			
-			<div id="infoMessage" class="infoMessage">
-				<p>Mensagem de erro ou sucesso.</p>
-			</div>
+			<h:panelGroup library="css" name="estilos.css" rendered="#{!facesContext.messageList.isEmpty()}">
+				<div id="infoMessage" class="infoMessage">
+					<h:messages class="mensagem" />
+				</div>
+			</h:panelGroup>
 			
 			<div class="formulario">
 				<form jsf:id="form">
+					<!-- esse campo hidden é para enviar a matricula do aluno no caso de atualizar dados -->
+					<input type="hidden" jsf:value="#{alunoBean.aluno.matricula}" />
 					<fieldset>
 						<legend>Dados pessoais</legend>
 						<div class="linha">
@@ -99,7 +107,7 @@
 							<p><input type="tel" jsf:value="#{alunoBean.aluno.telefone.ddd}" name="ddd" id="ddd"/><input type="tel" jsf:value="#{alunoBean.aluno.telefone.numero}" name="telefone" id="telefone"/></p>
 						</div>
 					</fieldset>
-					<input class="btn" type="submit" value="Cadastrar" jsf:action="#{alunoBean.gravar}"/>
+					<input class="btn" type="submit" value="Salvar" jsf:action="#{alunoBean.gravar}"/>
 					<input class="btn" type="button" value="Relatório de acessos"/>
 				</form>
 			</div>
