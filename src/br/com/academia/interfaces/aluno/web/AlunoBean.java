@@ -9,7 +9,7 @@ import javax.inject.Named;
 import br.com.academia.application.service.AlunoService;
 import br.com.academia.domain.aluno.Aluno;
 
-@Named // poderia dar um nome: @Named(name="nome"); se não tem nome, o jsf dá o nome da classe #{alunoBean} com a primeira letra minúscula
+@Named 
 @RequestScoped
 public class AlunoBean implements Serializable {
 

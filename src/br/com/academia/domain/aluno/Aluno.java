@@ -1,7 +1,8 @@
 package br.com.academia.domain.aluno;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+// import java.time.LocalDate;
+import java.time.Year;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -10,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import br.com.academia.application.util.StringUtils;
 
 @Entity
 @Table(name = "alunos")
@@ -59,10 +62,21 @@ public class Aluno implements Serializable {
 	@Embedded
 	private Telefone telefone = new Telefone();
 	
-	public void gerarMatricula() {
-		//TODO: implementar lógica
-		this.matricula = "1";
+	public void gerarMatricula(String maxMatricula) {
+		Year year = Year.now(); // pega o ano atual
+		
+		if(maxMatricula == null) { // no caso de início de ano não ter ninguém matriculado ainda
+			maxMatricula = year + StringUtils.leftZero(0, 4); // o 1º parâmetro é o nº zero, e o 2º é quantidade
+		}
+		
+		int sequencial = Integer.parseInt(maxMatricula.substring(4)); // o substring pega a partir do 5º elemento {0,1,2,3,4}
+																	  // como o maxMatricula é String, converte para inteiro
+		sequencial++;
+		
+		// montar o número da matrícula
+		this.matricula = year + StringUtils.leftZero(sequencial, 4); // pega o sequencial e completa com 4 zeros à esquerda
 	}
+	
 	// getters e setters
 	public String getMatricula() {
 		return matricula;
