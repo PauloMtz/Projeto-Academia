@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	lang="pt-br">
+
+	<ui:composition template="layout.xhtml">
+		<ui:define name="conteudo">
+
+			<div class="titulo">
+				<h1>Consultar aluno</h1>
+			</div>
+			
+			<h:panelGroup library="css" name="estilos.css" rendered="#{!facesContext.messageList.isEmpty()}">
+				<div id="infoMessage" class="infoMessage">
+					<h:messages class="mensagem" />
+				</div>
+			</h:panelGroup>
+			
+			<div class="formulario">
+				<form jsf:id="form">
+					<fieldset>
+						<legend>Consultar Aluno</legend>
+						<div class="linha">
+							<label for="nome">Nome:</label>
+							<p><input type="text" name="nome" id="nome"/></p>
+						</div>
+						<div class="linha">
+							<label for="id">Id:</label>
+							<p><input type="text" name="id" id="id"/></p>
+						</div>
+						<div class="linha">
+							<label for="rg">RG:</label>
+							<p><input type="text" name="rg" id="rg"/></p>
+						</div>
+						<div class="linha">
+							<label for="ddd">Telefone:</label>
+							<p><input type="tel" name="ddd" id="ddd" size="2"/><input type="tel" name="telefone" id="telefone"/></p>
+						</div>
+					</fieldset>
+					<p><input class="btn" type="submit" value="Pesquisar"/></p>
+				</form>
+			</div>
+			
+			<div>
+				<table class="tabela">
+					<thead>
+						<th>ID</th>
+						<th>Nome</th>
+						<th>RG</th>
+						<th>E-mail</th>
+						<th>Situação</th>
+						<th colspan="2">Ações</th>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td>Teste 1</td>
+							<td>12345</td>
+							<td>teste1@email.com</td>
+							<td>Ativo</td>
+							<td><a href="#">Editar</a></td>
+							<td><a href="#">Excluir</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</ui:define>
+	</ui:composition>
+</html>

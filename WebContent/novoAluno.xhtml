@@ -41,6 +41,7 @@
 							<label for="sexo">Sexo:</label>
 							<p>
 							<select jsf:value="#{alunoBean.aluno.sexo}" id="sexo" size="0">
+								<f:selectItem itemLabel="Selecione..." itemValue="" />
 								<f:selectItems value="#{dataBean.sexos}" />
 							</select>
 							</p>
@@ -67,6 +68,7 @@
 							<label for="situacao">Situação:</label>
 							<p>
 							<select jsf:value="#{alunoBean.aluno.situacao}" id="situacao" size="0">
+								<f:selectItem itemLabel="Selecione..." itemValue="" />
 								<f:selectItems value="#{dataBean.situacoes}" />
 							</select>
 							</p>
