@@ -69,8 +69,7 @@ public class Aluno implements Serializable {
 			maxMatricula = year + StringUtils.leftZero(0, 4); // o 1º parâmetro é o nº zero, e o 2º é quantidade
 		}
 		
-		int sequencial = Integer.parseInt(maxMatricula.substring(4)); // o substring pega a partir do 5º elemento {0,1,2,3,4}
-																	  // como o maxMatricula é String, converte para inteiro
+		int sequencial = Integer.parseInt(maxMatricula.substring(4)); 
 		sequencial++;
 		
 		// montar o número da matrícula

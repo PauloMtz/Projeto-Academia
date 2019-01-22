@@ -51,7 +51,7 @@ header, .formulario, .titulo, .infoMessage, .tabela {
 }
 .infoMessage {
 	background-color: white;
-	height: 30px;
+	min-height: 30px;
 	border-radius: 15px;
 	margin-top: 5px;
 	border: 2px solid #D8D8D8;

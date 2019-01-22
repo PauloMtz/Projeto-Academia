@@ -1,3 +1,7 @@
 .mensagem {
 	color: red;
+	list-style: none;
+	text-align: center;
+	font-weight: bold;
+	padding-top: 5px;
 }
