@@ -1,5 +1,8 @@
 package br.com.academia.application.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -36,7 +39,19 @@ public class AlunoService {
 		alunoRepository.update(aluno);
 	}
 	
+	public void delete(String matricula) {
+		alunoRepository.delete(matricula);
+	}
+	
 	public Aluno findByMatricula(String matricula) {
 		return alunoRepository.findByMatricula(matricula);
+	}
+	
+	public List<Aluno> listAlunos(String matricula, String nome, Integer rg, Integer telefone) {
+		//return List.of(alunoRepository.findByMatricula(matricula));
+		Aluno aluno = alunoRepository.findByMatricula(matricula);
+		List<Aluno> alunos = new ArrayList<Aluno>();
+		alunos.add(aluno);
+		return alunos;
 	}
 }

@@ -25,48 +25,48 @@
 					<fieldset>
 						<legend>Consultar Aluno</legend>
 						<div class="linha">
-							<label for="nome">Nome:</label>
-							<p><input type="text" name="nome" id="nome"/></p>
+							<label for="matricula">Matricula:</label>
+							<p><input type="text" jsf:value="#{pesquisaAlunoBean.matricula}" id="matricula"/></p>
 						</div>
 						<div class="linha">
-							<label for="id">Id:</label>
-							<p><input type="text" name="id" id="id"/></p>
+							<label for="nome">Nome:</label>
+							<p><input type="text" jsf:value="#{pesquisaAlunoBean.nome}" id="nome"/></p>
 						</div>
 						<div class="linha">
 							<label for="rg">RG:</label>
-							<p><input type="text" name="rg" id="rg"/></p>
+							<p><input type="text" jsf:value="#{pesquisaAlunoBean.rg}" id="rg"/></p>
 						</div>
 						<div class="linha">
-							<label for="ddd">Telefone:</label>
-							<p><input type="tel" name="ddd" id="ddd" size="2"/><input type="tel" name="telefone" id="telefone"/></p>
+							<label for="telefone">Telefone:</label>
+							<p><input type="tel" jsf:value="#{pesquisaAlunoBean.telefone}" id="telefone"/></p>
 						</div>
 					</fieldset>
-					<p><input class="btn" type="submit" value="Pesquisar"/></p>
+					<p><input class="btn" type="submit" value="Pesquisar" jsf:action="#{pesquisaAlunoBean.pesquisar}" /></p>
+				
+					<h:panelGroup rendered="#{not empty pesquisaAlunoBean.alunos}">
+						<table class="tabela">
+							<thead>
+								<th>Matrícula</th>
+								<th>Nome</th>
+								<th>RG</th>
+								<th>E-mail</th>
+								<th>Situação</th>
+								<th colspan="2">Ações</th>
+							</thead>
+							<ui:repeat var="a" value="#{pesquisaAlunoBean.alunos}"><!-- essa tag é como um laço for -->
+								<tr>
+									<td>#{a.matricula}</td>
+									<td>#{a.nome}</td>
+									<td>#{a.rg}</td>
+									<td>#{a.email}</td>
+									<td>#{a.situacao}</td>
+									<td><a jsf:outcome="novoAluno?matricula=#{a.matricula}">Editar</a></td>
+									<td><a onClick="return confirm('Confirma excluir registro?')" jsf:action="#{pesquisaAlunoBean.excluir(a.matricula)}" >Excluir</a></td>
+								</tr>
+							</ui:repeat>
+						</table>
+					</h:panelGroup>
 				</form>
-			</div>
-			
-			<div>
-				<table class="tabela">
-					<thead>
-						<th>ID</th>
-						<th>Nome</th>
-						<th>RG</th>
-						<th>E-mail</th>
-						<th>Situação</th>
-						<th colspan="2">Ações</th>
-					</thead>
-					<tbody>
-						<tr>
-							<td>1</td>
-							<td>Teste 1</td>
-							<td>12345</td>
-							<td>teste1@email.com</td>
-							<td>Ativo</td>
-							<td><a href="#">Editar</a></td>
-							<td><a href="#">Excluir</a></td>
-						</tr>
-					</tbody>
-				</table>
 			</div>
 		</ui:define>
 	</ui:composition>

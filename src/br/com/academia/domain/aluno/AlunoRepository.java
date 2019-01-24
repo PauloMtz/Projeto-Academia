@@ -6,6 +6,8 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import br.com.academia.application.util.StringUtils;
+
 @Stateless
 public class AlunoRepository {
 

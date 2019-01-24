@@ -13,7 +13,7 @@ import br.com.academia.application.service.AlunoService;
 import br.com.academia.application.util.StringUtils;
 import br.com.academia.domain.aluno.Aluno;
 
-@Named 
+@Named
 @RequestScoped
 public class AlunoBean implements Serializable {
 
