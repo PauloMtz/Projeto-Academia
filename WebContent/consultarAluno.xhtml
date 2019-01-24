@@ -50,6 +50,7 @@
 								<th>Nome</th>
 								<th>RG</th>
 								<th>E-mail</th>
+								<th>Telefone</th>
 								<th>Situação</th>
 								<th colspan="2">Ações</th>
 							</thead>
@@ -59,6 +60,7 @@
 									<td>#{a.nome}</td>
 									<td>#{a.rg}</td>
 									<td>#{a.email}</td>
+									<td>#{dataBean.formataTelefone(a.telefone.ddd, a.telefone.numero)}</td>
 									<td>#{a.situacao}</td>
 									<td><a jsf:outcome="novoAluno?matricula=#{a.matricula}">Editar</a></td>
 									<td><a onClick="return confirm('Confirma excluir registro?')" jsf:action="#{pesquisaAlunoBean.excluir(a.matricula)}" >Excluir</a></td>

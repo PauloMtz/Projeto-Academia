@@ -30,4 +30,11 @@ public class DataBean implements Serializable {
 	public List<Estado> getEstados() {
 		return dataService.listEstados();
 	}
+	
+	public String formataTelefone(Integer ddd, Integer telefone) {
+		if(ddd == null || telefone == null) {
+			return "";
+		}
+		return "(" + ddd + ") " + telefone;
+	}
 }

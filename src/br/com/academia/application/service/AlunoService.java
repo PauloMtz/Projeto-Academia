@@ -8,6 +8,7 @@ import javax.ejb.Stateless;
 
 import br.com.academia.application.util.StringUtils;
 import br.com.academia.application.util.Validation;
+import br.com.academia.application.util.ValidationException;
 import br.com.academia.domain.aluno.Aluno;
 import br.com.academia.domain.aluno.AlunoRepository;
 
@@ -48,10 +49,16 @@ public class AlunoService {
 	}
 	
 	public List<Aluno> listAlunos(String matricula, String nome, Integer rg, Integer telefone) {
+		
 		//return List.of(alunoRepository.findByMatricula(matricula));
-		Aluno aluno = alunoRepository.findByMatricula(matricula);
+		
+		/*Aluno aluno = alunoRepository.findByMatricula(matricula);
 		List<Aluno> alunos = new ArrayList<Aluno>();
-		alunos.add(aluno);
-		return alunos;
+		alunos.add(aluno);*/
+		
+		if(StringUtils.isEmpty(matricula) && StringUtils.isEmpty(nome) && rg == null && telefone == null) {
+			throw new ValidationException("Preencha pelo menos um campo para a consulta.");
+		}
+		return alunoRepository.listAlunos(matricula, nome, rg, telefone);
 	}
 }
