@@ -33,6 +33,32 @@ public class Acesso implements Serializable {
 	@Column(name = "saida", nullable = true)
 	private LocalDateTime saida;
 	
+	// se a saída estiver vazia, o aluno ainda está na academia
+	public boolean isEntradaSaidaPreenchidas() {
+		if(entrada != null && saida != null) {
+			return true;
+		}
+		
+		return false;
+	}
+	
+	public TipoAcesso registrarAcesso() {
+		LocalDateTime agora = LocalDateTime.now();
+		TipoAcesso tipoAcesso;
+		
+		if(entrada == null) {
+			entrada = agora;
+			tipoAcesso = TipoAcesso.Entrada;
+		} else if(saida == null) {
+			saida = agora;
+			tipoAcesso = TipoAcesso.Saida;
+		} else {
+			tipoAcesso = null;
+		}
+		
+		return tipoAcesso;
+	}
+	
 	// getters e setters
 	public Integer getId() {
 		return id;

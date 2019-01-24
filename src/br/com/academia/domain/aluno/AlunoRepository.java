@@ -5,8 +5,10 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.validation.ValidationException;
 
 import br.com.academia.application.util.StringUtils;
 
@@ -26,6 +28,17 @@ public class AlunoRepository {
 	
 	public Aluno findByMatricula(String matricula) {
 		return em.find(Aluno.class, matricula);
+	}
+	
+	public Aluno findByRg(Integer rg) {
+		
+		try {
+			return em.createQuery("SELECT a FROM Aluno a WHERE a.rg = :rg", Aluno.class)
+					.setParameter("rg", rg)
+					.getSingleResult();
+		} catch(NoResultException e) {
+			return null;
+		}
 	}
 	
 	public void delete(String matricula) {
