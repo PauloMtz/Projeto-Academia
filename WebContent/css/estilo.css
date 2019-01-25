@@ -50,7 +50,7 @@ header, .formulario, .titulo, .infoMessage, .tabela {
 	padding-top: 5px;
 }
 .infoMessage {
-	background-color: yellow;
+	background-color: #F3F781;
 	min-height: 30px;
 	border-radius: 15px;
 	margin-top: 5px;

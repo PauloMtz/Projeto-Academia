@@ -1,10 +1,14 @@
 package br.com.academia.domain.acesso;
 
 import javax.ejb.Stateless;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
+import br.com.academia.application.util.ValidationException;
 import br.com.academia.domain.aluno.Aluno;
 
 @Stateless
@@ -12,6 +16,9 @@ public class AcessoRepository {
 
 	@PersistenceContext
 	private EntityManager em;
+	
+	@Inject
+	private FacesContext facesContext;
 	
 	public Acesso findUltimoAcesso(Aluno aluno) {
 		
@@ -21,9 +28,11 @@ public class AcessoRepository {
 					.setParameter("matricula", aluno.getMatricula())
 					.setMaxResults(1)
 					.getSingleResult();
-		} catch(NoResultException e) {
-			return null;
+		} catch(ValidationException e) {
+			facesContext.addMessage(null, new FacesMessage(e.getMessage()));
 		}
+
+		return null;
 		
 	}
 	

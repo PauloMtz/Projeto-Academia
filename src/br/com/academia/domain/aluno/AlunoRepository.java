@@ -4,6 +4,9 @@ import java.time.Year;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
@@ -11,6 +14,7 @@ import javax.persistence.TypedQuery;
 import javax.validation.ValidationException;
 
 import br.com.academia.application.util.StringUtils;
+import br.com.academia.domain.aluno.Aluno.Situacao;
 
 @Stateless
 public class AlunoRepository {
@@ -18,8 +22,11 @@ public class AlunoRepository {
 	@PersistenceContext
 	private EntityManager em;
 	
+	@Inject
+	private FacesContext facesContext;
+	
 	public void store(Aluno aluno) {
-		em.persist(aluno); // basta esta linha para gravar um aluno no banco de dados
+		em.persist(aluno);
 	}
 	
 	public void update(Aluno aluno) {
@@ -36,9 +43,11 @@ public class AlunoRepository {
 			return em.createQuery("SELECT a FROM Aluno a WHERE a.rg = :rg", Aluno.class)
 					.setParameter("rg", rg)
 					.getSingleResult();
-		} catch(NoResultException e) {
-			return null;
+		} catch(ValidationException e) {
+			facesContext.addMessage(null, new FacesMessage(e.getMessage()));
 		}
+		
+		return null;
 	}
 	
 	public void delete(String matricula) {
@@ -94,5 +103,11 @@ public class AlunoRepository {
 		}
 		
 		return q.getResultList();
+	}
+	
+	public List<Aluno> listSituacoesAluno(Situacao situacao) {
+		return em.createQuery("SELECT a FROM Aluno a WHERE a.situacao = :situacao ORDER BY a.nome", Aluno.class)
+				.setParameter("situacao", situacao)
+				.getResultList();
 	}
 }

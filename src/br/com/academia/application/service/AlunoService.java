@@ -10,6 +10,7 @@ import br.com.academia.application.util.StringUtils;
 import br.com.academia.application.util.Validation;
 import br.com.academia.application.util.ValidationException;
 import br.com.academia.domain.aluno.Aluno;
+import br.com.academia.domain.aluno.Aluno.Situacao;
 import br.com.academia.domain.aluno.AlunoRepository;
 
 @Stateless
@@ -45,6 +46,7 @@ public class AlunoService {
 	}
 	
 	public Aluno findByMatricula(String matricula) {
+		Validation.assertNotEmpty(matricula);
 		return alunoRepository.findByMatricula(matricula);
 	}
 	
@@ -60,5 +62,10 @@ public class AlunoService {
 			throw new ValidationException("Preencha pelo menos um campo para a consulta.");
 		}
 		return alunoRepository.listAlunos(matricula, nome, rg, telefone);
+	}
+	
+	public List<Aluno> listSituacoesAluno(Situacao situacao) {
+		Validation.assertNotEmpty(situacao);
+		return alunoRepository.listSituacoesAluno(situacao);
 	}
 }

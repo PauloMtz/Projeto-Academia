@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	lang="pt-br">
+
+	<ui:composition template="layout.xhtml">
+		<ui:define name="conteudo">
+	
+			<div class="titulo">
+				<h1>Relatório de situações</h1>
+			</div>
+			
+			<h:panelGroup library="css" name="estilos.css" rendered="#{!facesContext.messageList.isEmpty()}">
+				<div id="infoMessage" class="infoMessage">
+					<h:messages class="mensagem" />
+				</div>
+			</h:panelGroup>
+
+			<div class="formulario">
+				<form jsf:id="form">
+					<fieldset>
+						<legend>Pesquisar alunos</legend>
+						<div class="linha">
+							<p><label for="situacao">Situação:</label></p>
+							<select jsf:value="#{relatorioSituacoesBean.situacao}" id="situacao" size="0">
+								<f:selectItem itemLabel="Selecione..." itemValue="" />
+								<f:selectItems value="#{dataBean.situacoes}" />
+							</select>
+						</div>
+					</fieldset>
+					<p><input class="btn" type="submit" value="Gerar Relatório" jsf:action="#{relatorioSituacoesBean.gerarRelatorio}"/></p>
+					
+					<h:panelGroup rendered="#{not empty relatorioSituacoesBean.alunos}">
+						<table class="tabela">
+							<thead>
+								<th>Matrícula</th>
+								<th>Nome</th>
+								<th>Situação</th>
+								<th>E-mail</th>
+								<th>Telefone</th>
+								<th>Ações</th>
+							</thead>
+							<ui:repeat var="a" value="#{relatorioSituacoesBean.alunos}">
+								<tr>
+									<td>#{a.matricula}</td>
+									<td>#{a.nome}</td>
+									<td>#{a.situacao}</td>
+									<td>#{a.email}</td>
+									<td>#{dataBean.formataTelefone(a.telefone.ddd, a.telefone.numero)}</td>
+									<td><a jsf:outcome="novoAluno?matricula=#{a.matricula}">Editar</a></td>
+								</tr>
+							</ui:repeat>
+						</table>
+					</h:panelGroup>
+				</form>
+			</div>
+		</ui:define>
+	</ui:composition>
+</html>
