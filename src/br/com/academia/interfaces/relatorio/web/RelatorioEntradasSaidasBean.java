@@ -4,15 +4,27 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
 
+import br.com.academia.application.service.AlunoService;
+import br.com.academia.application.util.ValidationException;
 import br.com.academia.domain.acesso.Acesso;
 
 @Named
 @RequestScoped
 public class RelatorioEntradasSaidasBean implements Serializable {
 
+	@EJB
+	private AlunoService alunoService;
+	
+	@Inject
+	private FacesContext facesContext;
+	
 	private String matricula;
 	private LocalDate dataInicial;
 	private LocalDate dataFinal;
@@ -20,6 +32,12 @@ public class RelatorioEntradasSaidasBean implements Serializable {
 	private List<Acesso> acessos;
 	
 	public String gerarRelatorio() {
+		try {
+			acessos = alunoService.listAcessosAlunos(matricula, dataInicial, dataFinal);
+		} catch(ValidationException e) {
+			facesContext.addMessage(null, new FacesMessage(e.getMessage()));
+		}
+		
 		return null;
 	}
 
