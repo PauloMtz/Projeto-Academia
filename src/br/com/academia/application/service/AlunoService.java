@@ -1,5 +1,6 @@
 package br.com.academia.application.service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +10,7 @@ import javax.ejb.Stateless;
 import br.com.academia.application.util.StringUtils;
 import br.com.academia.application.util.Validation;
 import br.com.academia.application.util.ValidationException;
+import br.com.academia.domain.acesso.Acesso;
 import br.com.academia.domain.aluno.Aluno;
 import br.com.academia.domain.aluno.Aluno.Situacao;
 import br.com.academia.domain.aluno.AlunoRepository;
@@ -67,5 +69,12 @@ public class AlunoService {
 	public List<Aluno> listSituacoesAluno(Situacao situacao) {
 		Validation.assertNotEmpty(situacao);
 		return alunoRepository.listSituacoesAluno(situacao);
+	}
+	
+	public List<Acesso> listAcessosAlunos(String matricula, LocalDate dataInicial, LocalDate dataFinal) {
+		if(StringUtils.isEmpty(matricula) && dataInicial == null && dataFinal == null) {
+			throw new ValidationException("Preencha pelo menos um campo para a consulta.");
+		}
+		return alunoRepository.listAcessosAlunos(matricula, dataInicial, dataFinal);
 	}
 }
