@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	lang="pt-br">
+
+	<ui:composition template="layout.xhtml">
+		<f:metadata>
+			<f:viewParam name="matricula" value="#{alunoBean.matricula}" />
+			<f:viewAction action="#{alunoBean.carregar}" />
+		</f:metadata>
+		<ui:define name="conteudo">
+	
+			<div class="titulo">
+				<h1>Relatório de entradas e saídas</h1>
+			</div>
+			
+			<h:panelGroup library="css" name="estilos.css" rendered="#{!facesContext.messageList.isEmpty()}">
+				<div id="infoMessage" class="infoMessage">
+					<h:messages class="mensagem" />
+				</div>
+			</h:panelGroup>
+
+			<div class="formulario">
+				<form jsf:id="form">
+					<fieldset>
+						<legend>Consultar por matrícula ou por período</legend>
+						<div class="linha">
+							<label for="matricula">Matrícula:</label>
+							<p><input type="text" jsf:value="#{relatorioEntradasSaidasBean.matricula}" id="matricula"/></p>
+						</div>
+						<div class="linha">
+							<label for="dataInicial">Data inicial:</label>
+							<p><input type="date" jsf:value="#{relatorioEntradasSaidasBean.dataInicial}" id="dataInicial">
+								<f:convertDateTime type="LocalDate" pattern="yyyy-MM-dd" />
+							</input></p>
+						</div>
+						<div class="linha">
+							<label for="dataFinal">Data final:</label>
+							<p><input type="date" jsf:value="#{relatorioEntradasSaidasBean.dataFinal}" id="dataFinal">
+								<f:convertDateTime type="LocalDate" pattern="yyyy-MM-dd" />
+							</input></p>
+						</div>
+					</fieldset>
+					<p><input class="btn" type="submit" value="Pesquisar" jsf:action="#{relatorioEntradasSaidasBean.gerarRelatorio}" /></p>
+				</form>
+			</div>
+			
+			<div>
+				<table class="tabela">
+					<thead>
+						<th>Matrícula</th>
+						<th>Nome</th>
+						<th>Entrada</th>
+						<th>Saída</th>
+						<th>Duração</th>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td>Teste 1</td>
+							<td>05/01/2015 19:01:13</td>
+							<td>05/01/2015 20:17:38</td>
+							<td>01:16:25</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</ui:define>
+	</ui:composition>
+</html>
