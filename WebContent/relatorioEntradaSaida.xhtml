@@ -48,27 +48,39 @@
 					<p><input class="btn" type="submit" value="Pesquisar" jsf:action="#{relatorioEntradasSaidasBean.gerarRelatorio}" /></p>
 				</form>
 			</div>
-			
-			<div>
-				<table class="tabela">
-					<thead>
-						<th>Matrícula</th>
-						<th>Nome</th>
-						<th>Entrada</th>
-						<th>Saída</th>
-						<th>Duração</th>
-					</thead>
-					<tbody>
-						<tr>
-							<td>1</td>
-							<td>Teste 1</td>
-							<td>05/01/2015 19:01:13</td>
-							<td>05/01/2015 20:17:38</td>
-							<td>01:16:25</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
+			<h:panelGroup rendered="#{not empty relatorioEntradasSaidasBean.acessos}">
+			<!-- acessos é lista utilizada dentro do método gerarRelatorio -->
+				<div>
+					<table class="tabela">
+						<thead>
+							<th>Matrícula</th>
+							<th>Nome</th>
+							<th>Entrada</th>
+							<th>Saída</th>
+							<th>Duração</th>
+						</thead>
+						<tbody>
+							<ui:repeat var="a" value="#{relatorioEntradasSaidasBean.acessos}">
+								<tr>
+									<td>#{a.aluno.matricula}</td>
+									<td>#{a.aluno.nome}</td>
+									<td>
+										<h:outputText value="#{a.entrada}">
+											<!-- <f:convertDateTime type="localDateTime" pattern="dd/MM/yyyy HH:mm" /> -->
+										</h:outputText>
+									</td>
+									<td>
+										<h:outputText value="#{a.saida}">
+											<!-- <f:convertDateTime type="localDateTime" pattern="dd/MM/yyyy HH:mm" /> -->
+										</h:outputText>
+									</td>
+									<td>#{a.calcularDuracao()}</td>
+								</tr>
+							</ui:repeat>
+						</tbody>
+					</table>
+				</div>
+			</h:panelGroup>
 		</ui:define>
 	</ui:composition>
 </html>

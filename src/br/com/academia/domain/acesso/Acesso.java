@@ -1,6 +1,7 @@
 package br.com.academia.domain.acesso;
 
 import java.io.Serializable;
+import java.time.Duration;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -11,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
 import br.com.academia.domain.aluno.Aluno;
 
 @Entity
@@ -57,6 +57,15 @@ public class Acesso implements Serializable {
 		}
 		
 		return tipoAcesso;
+	}
+	
+	public String calcularDuracao() {
+		if (entrada == null || saida == null) {
+			return null;
+		}
+		
+		Duration d = Duration.between(entrada, saida);
+		return String.format("%02d:%02d", d.toHoursPart(), d.toMinutesPart());
 	}
 	
 	// getters e setters

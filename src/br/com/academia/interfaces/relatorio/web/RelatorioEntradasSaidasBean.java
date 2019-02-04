@@ -14,6 +14,7 @@ import javax.inject.Named;
 import br.com.academia.application.service.AlunoService;
 import br.com.academia.application.util.ValidationException;
 import br.com.academia.domain.acesso.Acesso;
+import br.com.academia.application.util.StringUtils;
 
 @Named
 @RequestScoped
@@ -30,6 +31,12 @@ public class RelatorioEntradasSaidasBean implements Serializable {
 	private LocalDate dataFinal;
 	
 	private List<Acesso> acessos;
+	
+	public void carregarAluno() {
+		if (!StringUtils.isEmpty(matricula)) {
+			gerarRelatorio();
+		}
+	}
 	
 	public String gerarRelatorio() {
 		try {

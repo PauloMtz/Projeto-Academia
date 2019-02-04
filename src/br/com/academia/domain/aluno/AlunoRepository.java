@@ -11,7 +11,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.validation.ValidationException;
@@ -123,12 +122,12 @@ public class AlunoRepository {
 		}
 		
 		if(dataInicial != null) {
-			jpql.append("a.entrada >= :entradaInicio AND a.entrada <= :entradaFim AND "); // aqui está navegando no acesso
+			jpql.append("a.entrada >= :entradaInicio AND "); // aqui está navegando no acesso
 			// como LocalDate trabalha com data e hora, tem que especificar a hora inicial e hora final
 		}
 		
 		if(dataFinal != null) {
-			jpql.append("a.saida >= :saidaInicio AND a.saida <= :saidaFim AND ");
+			jpql.append("a.saida <= :saidaFim AND ");
 		}
 		
 		jpql.append("1 = 1 ORDER BY a.entrada"); // '1 = 1' fecha as condições da pesquisa, e é sempre verdadeiro
@@ -142,16 +141,10 @@ public class AlunoRepository {
 		if(dataInicial != null) {
 			LocalDateTime ldt = LocalDateTime.of(dataInicial, LocalTime.of(0, 0, 0));
 			q.setParameter("entradaInicio", ldt);
-			
-			ldt = LocalDateTime.of(dataInicial, LocalTime.of(23, 59, 59));
-			q.setParameter("entradaFim", ldt);
 		}
 		
 		if(dataFinal != null) {
-			LocalDateTime ldt = LocalDateTime.of(dataFinal, LocalTime.of(0, 0, 0));
-			q.setParameter("saidaInicio", ldt);
-			
-			ldt = LocalDateTime.of(dataFinal, LocalTime.of(23, 59, 59));
+			LocalDateTime ldt = LocalDateTime.of(dataFinal, LocalTime.of(23, 59, 59));
 			q.setParameter("saidaFim", ldt);
 		}
 		
