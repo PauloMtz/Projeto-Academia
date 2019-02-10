@@ -9,8 +9,8 @@
 
 	<ui:composition template="layout.xhtml">
 		<f:metadata>
-			<f:viewParam name="matricula" value="#{alunoBean.matricula}" />
-			<f:viewAction action="#{alunoBean.carregar}" />
+			<f:viewParam name="matricula" value="#{relatorioEntradasSaidasBean.matricula}" />
+			<f:viewAction action="#{relatorioEntradasSaidasBean.carregarAluno}" />
 		</f:metadata>
 		<ui:define name="conteudo">
 	
