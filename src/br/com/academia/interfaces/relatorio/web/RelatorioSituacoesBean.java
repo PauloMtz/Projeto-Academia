@@ -2,9 +2,12 @@ package br.com.academia.interfaces.relatorio.web;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.annotation.RequestParameterMap;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.academia.application.service.AlunoService;
@@ -25,6 +28,19 @@ public class RelatorioSituacoesBean implements Serializable {
 	 */
 	@EJB
 	private AlunoService alunoService;
+	
+	@Inject
+	@RequestParameterMap
+	private Map<String, String> requestParamsMap;
+	
+	public void check() {
+		String clear = requestParamsMap.get("clear");
+		
+		if(clear != null && Boolean.valueOf(clear)) {
+			situacao = null;
+			alunos = null;
+		}
+	}
 	
 	public String gerarRelatorio() {
 		alunos = alunoService.listSituacoesAluno(situacao);
